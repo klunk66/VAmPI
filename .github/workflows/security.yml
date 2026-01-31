@@ -59,6 +59,10 @@ jobs:
           sleep 5
           curl -s http://127.0.0.1:5000/createdb || true
 
+      - name: Make workspace writable for ZAP
+        run: |
+          chmod -R a+rwX "$GITHUB_WORKSPACE"
+
       - name: ZAP Baseline Scan (report only)
         continue-on-error: true
         uses: zaproxy/action-baseline@v0.12.0
